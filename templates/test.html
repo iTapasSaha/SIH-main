@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="https://code.responsivevoice.org/responsivevoice.js?key=2CpJPbYZ"></script>
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    
+</head>
+  <style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  h1 {
+    color: #020c1a;
+    font-weight: 600;
+    font-size: 3rem;
+    opacity: 0.8;
+  }
+  h2,
+  p {
+    color: #111720;
+    font-weight: 500;
+    opacity: 0.8;
+  }
+  
+  h3 {
+    color: #0562ee;
+    font-weight: 600;
+    opacity: 0.8;
+  }
+  
+  main {
+    font-family: "Poppins", sans-serif;
+    min-height: 100vh;
+    background: linear-gradient(to right top, #573030, #ca6334);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .glass {
+    background: white;
+    min-height: 80vh;
+    width: 90%;
+    background: linear-gradient(
+      to right bottom,
+      rgba(255, 255, 255, 0.7),
+      rgba(255, 255, 255, 0.3)
+    );
+    border-radius: 2rem;
+    z-index: 2;
+    backdrop-filter: blur(2rem);
+    display: flex;
+  }
+  .circle1,
+  .circle2 {
+    background: white;
+    background: linear-gradient(
+      to right bottom,
+      rgba(255, 255, 255, 0.8),
+      rgba(255, 255, 255, 0.3)
+    );
+    height: 20rem;
+    width: 20rem;
+    position: absolute;
+    border-radius: 50%;
+  }
+  
+  .circle1 {
+    top: 5%;
+    right: 15%;
+  }
+  .circle2 {
+    bottom: 5%;
+    left: 10%;
+  }
+  
+  
+  
+  .games {
+    flex: 2;
+    margin: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+  
+  
+  
+  /* GAMES */
+  .status {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  
+ 
+  
+  .card {
+    display: flex;
+    background: linear-gradient(
+      to left top,
+      rgba(255, 255, 255, 0.8),
+      rgba(255, 255, 255, 0.5)
+    );
+    border-radius: 1rem;
+    margin: 2rem 0rem;
+    padding: 2rem;
+    box-shadow: 6px 6px 20px rgba(122, 122, 122, 0.212);
+    justify-content: space-between;
+  }
+  
+  
+  .card-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .heading {
+    text-align: left;
+    width: fit-content;
+    block-size: fit-content;
+
+  }
+  
+ 
+  </style>
+<body>
+    <main>
+        <section class="glass">
+           
+          <div class="games">
+            <div class="status">
+              <h1>Summary</h1>
+              
+            </div>
+            <div class="cards">
+              <div class="card">
+
+                <div id="content">
+                  <h2 class="heading"><b>{{value1}}</b></h2>
+                  <br>
+                  <h2>{{value2}}</h2>
+                  <br>
+                  <h2><b>Hindi summarization</b></h2>
+                  <h2>{{value4}}</h2> 
+                  <br> 
+                  <h2><b>Tamil summarization</b></h2> 
+                  <h2>{{value5}}</h2>    
+                  <br>         
+                  <h2><b>Bengali summarization</b></h2> 
+                  <h2>{{value6}}</h2>  
+                  <br>           
+                  <h2><b>Marathi summarization</b></h2> 
+                  <h2>{{value7}}</h2>    
+                  <br>         
+                  <h2><b>Telegu summarization</b></h2> 
+                  <h2>{{value8}}</h2>   
+                  <br>
+                  <h3><i>{{value3}}</i></h2>          
+                </div>
+
+              </div>              
+             </div>
+          </div>
+        </section>
+      </main>
+      <div class="circle1"></div>
+      <div class="circle2"></div>
+
+      <script> 
+        function getSelectionText() {
+            var text = "";
+            if (window.getSelection) {
+                text = window.getSelection().toString();
+            // for Internet Explorer 8 and below. For Blogger, you should use &amp;&amp; instead of &&.
+            } else if (document.selection && document.selection.type != "Control") { 
+                text = document.selection.createRange().text;
+            }
+            return text;
+        }
+        $(document).ready(function (){ // when the document has completed loading
+           $(document).mouseup(function (e){ // attach the mouseup event for all div and pre tags
+              setTimeout(function() { // When clicking on a highlighted area, the value stays highlighted until after the mouseup event, and would therefore stil be captured by getSelection. This micro-timeout solves the issue. 
+                 responsiveVoice.cancel(); // stop anything currently being spoken
+                 responsiveVoice.speak(getSelectionText()); //speak the text as returned by getSelectionText
+              }, 1);
+           });
+        });
+      </script>
+</body>
+</html>
